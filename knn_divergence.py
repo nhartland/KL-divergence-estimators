@@ -1,18 +1,22 @@
+""" KL-Divergence estimation through K-Nearest Neighbours
+
+    This module provides four implementations of the K-NN divergence estimator of
+        Qing Wang, Sanjeev R. Kulkarni, and Sergio Verdú.
+        "Divergence estimation for multidimensional densities via
+        k-nearest-neighbor distances." Information Theory, IEEE Transactions on
+        55.5 (2009): 2392-2405.
+
+    The implementations are through:
+        numpy (naive_estimator)
+        scipy (scipy_estimator)
+        scikit-learn (skl_estimator)
+
+    No guarantees are made w.r.t the efficiency of these implementations.
+
+"""
 import numpy as np
 from sklearn.neighbors import NearestNeighbors
 from scipy.spatial import KDTree
-
-
-def gaussian_divergence(mu1, mu2, sig1, sig2):
-    """ Analytical result for KL-divergence of two Gaussians.
-
-    D(P(mu1, sig1) | Q(mu2,sig2))
-    Ref: http://allisons.org/ll/MML/KL/Normal/
-    """
-    mudiff  = pow(mu1-mu2, 2)
-    sigdiff = sig1*sig1 - sig2*sig2
-    lograt  = np.log(sig2/sig1)
-    return lograt + (mudiff + sigdiff) / (2*sig2*sig2)
 
 
 def knn_distance(point, sample, k):
@@ -29,7 +33,7 @@ def verify_sample_shapes(s1, s2, k):
     assert(s1.shape[1] == s2.shape[1])
 
 
-def test_knn_divergence(s1, s2, k):
+def naive_estimator(s1, s2, k):
     """ KL-Divergence estimator using brute-force k-NN
         s1: (N_1,D) Sample drawn from distribution P
         s2: (N_2,D) Sample drawn from distribution Q
@@ -49,7 +53,7 @@ def test_knn_divergence(s1, s2, k):
     return D
 
 
-def scipy_knn_divergence(s1, s2, k):
+def scipy_estimator(s1, s2, k):
     """ KL-Divergence estimator using scipy's KDTree
         s1: (N_1,D) Sample drawn from distribution P
         s2: (N_2,D) Sample drawn from distribution Q
@@ -62,7 +66,7 @@ def scipy_knn_divergence(s1, s2, k):
     d = float(s1.shape[1])
     D = np.log(m / (n - 1))
 
-    nu_d,  nu_i   = KDTree(s2).query(s1, k )
+    nu_d,  nu_i   = KDTree(s2).query(s1, k)
     rho_d, rhio_i = KDTree(s1).query(s1, k+1)
 
     # KTree.query returns different shape in k==1 vs k > 1
@@ -74,7 +78,7 @@ def scipy_knn_divergence(s1, s2, k):
     return D
 
 
-def skl_knn_divergence(s1, s2, k):
+def skl_estimator(s1, s2, k):
     """ KL-Divergence estimator using scikit-learn's NearestNeighbours
         s1: (N_1,D) Sample drawn from distribution P
         s2: (N_2,D) Sample drawn from distribution Q
