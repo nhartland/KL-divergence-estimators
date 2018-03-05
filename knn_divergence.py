@@ -33,11 +33,11 @@ def verify_sample_shapes(s1, s2, k):
     assert(s1.shape[1] == s2.shape[1])
 
 
-def naive_estimator(s1, s2, k):
+def naive_estimator(s1, s2, k=1):
     """ KL-Divergence estimator using brute-force k-NN
         s1: (N_1,D) Sample drawn from distribution P
         s2: (N_2,D) Sample drawn from distribution Q
-        k: Number of neighbours considered
+        k: Number of neighbours considered (default 1)
         return: estimated D(P|Q)
     """
     verify_sample_shapes(s1, s2, k)
@@ -53,11 +53,11 @@ def naive_estimator(s1, s2, k):
     return D
 
 
-def scipy_estimator(s1, s2, k):
+def scipy_estimator(s1, s2, k=1):
     """ KL-Divergence estimator using scipy's KDTree
         s1: (N_1,D) Sample drawn from distribution P
         s2: (N_2,D) Sample drawn from distribution Q
-        k: Number of neighbours considered
+        k: Number of neighbours considered (default 1)
         return: estimated D(P|Q)
     """
     verify_sample_shapes(s1, s2, k)
@@ -78,11 +78,11 @@ def scipy_estimator(s1, s2, k):
     return D
 
 
-def skl_estimator(s1, s2, k):
+def skl_estimator(s1, s2, k=1):
     """ KL-Divergence estimator using scikit-learn's NearestNeighbours
         s1: (N_1,D) Sample drawn from distribution P
         s2: (N_2,D) Sample drawn from distribution Q
-        k: Number of neighbours considered
+        k: Number of neighbours considered (default 1)
         return: estimated D(P|Q)
     """
     verify_sample_shapes(s1, s2, k)

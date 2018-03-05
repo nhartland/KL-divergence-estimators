@@ -68,7 +68,7 @@ class gaussian_divergence_estimate_1d:
     the mean, 68% confidence interval and MSE of an ensemble of resamples"""
     name  = "gaussian_divergence_1d"
     title = "$\hat{D}_{\\mathrm{KL}}(P||Q)$, $P \sim N(0,1)$, $Q \sim N(3,1)$"
-    expectation = gaussian_divergence(0, 1, 3, 1)
+    expectation = gaussian_divergence(0, 3, 1, 1)
     def P(self, sample_size):
         return np.random.multivariate_normal([0], [[1]], sample_size)
     def Q(self, sample_size):
