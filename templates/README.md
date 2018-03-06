@@ -22,7 +22,7 @@ The estimator is that of
 ## {{ test.name }}
 {{ test.__doc__ }}
 
-|    Estimator    |   D(P|Q) | Time (s)|
+|    Estimator    |  D(P\|Q) | Time (s)|
 |-----------------|----------|---------|
 {%- for comp in Comparisons[test.filename] %}
 {{'|%-17s|% -.3e|%.7f|' % (comp.Estimator, comp.Mean, comp.Time) }}

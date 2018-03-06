@@ -31,11 +31,11 @@ The estimator is that of
  Estimate the divergence between two samples of size `N` and dimension
     1, drawn from the same ~ N(0,1) probability distribution.
 
-|    Estimator    |   D(P|Q) | Time (s)|
+|    Estimator    |  D(P\|Q) | Time (s)|
 |-----------------|----------|---------|
-|naive_estimator  | 5.367e-03|0.0571733|
-|scipy_estimator  | 5.367e-03|0.1456988|
-|skl_estimator    | 5.367e-03|0.4575222|
+|naive_estimator  | 5.367e-03|0.0556660|
+|scipy_estimator  | 5.367e-03|0.1419210|
+|skl_estimator    | 5.367e-03|0.4678290|
 
 
 
@@ -44,11 +44,11 @@ The estimator is that of
     from the same 2D distribution with
     mean=[0,0] and covariance=[[1, 0.1], [0.1, 1]] 
 
-|    Estimator    |   D(P|Q) | Time (s)|
+|    Estimator    |  D(P\|Q) | Time (s)|
 |-----------------|----------|---------|
-|naive_estimator  |-5.814e-02|0.0623012|
-|scipy_estimator  |-5.814e-02|0.1501002|
-|skl_estimator    |-5.814e-02|0.4617238|
+|naive_estimator  |-5.814e-02|0.0657251|
+|scipy_estimator  |-5.814e-02|0.1501229|
+|skl_estimator    |-5.814e-02|0.4667468|
 
 
 
@@ -56,11 +56,11 @@ The estimator is that of
  Estimate the divergence between two samples of size `N` and dimension
     1. The first drawn from N(0,1), the second from N(3,1).
 
-|    Estimator    |   D(P|Q) | Time (s)|
+|    Estimator    |  D(P\|Q) | Time (s)|
 |-----------------|----------|---------|
-|naive_estimator  | 1.173e+00|0.0578928|
-|scipy_estimator  | 1.173e+00|0.1400411|
-|skl_estimator    | 1.173e+00|0.4653130|
+|naive_estimator  | 1.173e+00|0.0565381|
+|scipy_estimator  | 1.173e+00|0.1454680|
+|skl_estimator    | 1.173e+00|0.4728351|
 
 
 
