@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-
 import os
 import sys
 import logging
@@ -11,6 +10,17 @@ from plots import convergence_plot
 from knn_divergence import Estimators, naive_estimator
 
 logging.basicConfig(stream=sys.stdout, level=logging.INFO)
+
+# Jinja rendering
+PATH = os.path.dirname(os.path.abspath(__file__))
+TEMPLATE_ENVIRONMENT = Environment( autoescape=False,
+    loader=FileSystemLoader(os.path.join(PATH, 'templates')),
+    trim_blocks=False)
+
+
+def render_template(template_filename, context):
+    return TEMPLATE_ENVIRONMENT.get_template(template_filename).render(context)
+
 
 def generate_estimator_comparison():
     """ Generates a comparison of the estimator results for all estimators and
@@ -34,36 +44,15 @@ def generate_convergence_plots():
     return convergence_plots
 
 
-PATH = os.path.dirname(os.path.abspath(__file__))
-TEMPLATE_ENVIRONMENT = Environment(
-    autoescape=False,
-    loader=FileSystemLoader(os.path.join(PATH, 'templates')),
-    trim_blocks=False)
-
-
-def render_template(template_filename, context):
-    return TEMPLATE_ENVIRONMENT.get_template(template_filename).render(context)
-
-
-def create_index_html():
-    fname = "README.md"
-
-    context = {
+def main():
+    data = {
         'Estimators': Estimators,
         'Tests': Tests,
         'Comparisons': generate_estimator_comparison(),
-        'ConvergencePlots': generate_convergence_plots()
-    }
-    #
-    with open(fname, 'w') as f:
-        html = render_template(fname, context)
-        f.write(html)
+        'ConvergencePlots': generate_convergence_plots()}
+    with open("README.md", 'w') as f:
+        f.write(render_template("README.md", data))
 
-
-def main():
-    create_index_html()
-
-#############################################################################
 
 if __name__ == "__main__":
     main()

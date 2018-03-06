@@ -10,8 +10,10 @@ The estimator is that of
 Samples are drawn from various test distributions, and the estimated
 KL-divergence between them is computed. Where given, uncertainties are
 assessed by re-sampling the distributions and re-computing divergence estimates
-`n_resamples=100` times. Uncertainty bands are then given as the interval
-containing 68% of the re-sampled estimates closest to the median.
+100 times. Uncertainty bands are then given as the interval
+containing 68% of the re-sampled estimates closest to the median. Timings
+where provided are the time taken for the computation of all 100 re-samples
+on a sample size of `N=1000` with `k=5`.
 
 This study is far from exhaustive, and timings are sensitive to implementation
 details. Please take with a pinch of salt.
@@ -25,7 +27,7 @@ details. Please take with a pinch of salt.
    {{ estimator.__doc__.splitlines()[0] }}
 {% endfor %}
 
-These estimators have been benchmarked against `slaypni/universal-divergence`.
+These estimators have been benchmarked against [slaypni/universal-divergence](https://github.com/slaypni/universal-divergence).
 
 # Tests
 
@@ -57,7 +59,8 @@ Which will then likely take some time to complete.
 #### Requirements
 
 - Python >= 3.6
-- scipy, scikit-learn, jinja2 
+- scipy, scikit-learn
+- matplotlib, jinja2
 
 #### Important settings
 
