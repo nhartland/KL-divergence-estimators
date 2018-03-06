@@ -47,7 +47,7 @@ These estimators have been benchmarked against [slaypni/universal-divergence](ht
 
 
 
-## 1-D self-divergence
+## Self-divergence of samples from 1-dimensional Gaussian
  Estimate the divergence between two samples of size **N** and dimension
     1, drawn from the same ~ N(0,1) probability distribution.
 
@@ -57,16 +57,16 @@ These estimators have been benchmarked against [slaypni/universal-divergence](ht
 
 |    Estimator    |  D(P\|Q) | Time (s)|
 |-----------------|----------|---------|
-|naive_estimator  | 2.032e-02|1.31433|
-|scipy_estimator  | 2.032e-02|2.62308|
-|skl_estimator    | 2.032e-02|3.69682|
+|naive_estimator  | 2.032e-02|1.28742|
+|scipy_estimator  | 2.032e-02|2.41608|
+|skl_estimator    | 2.032e-02|3.81711|
 
 #### Convergence of estimator with *N*
 ![Convergence Plot](figures/self_divergence_1d_convergence.png)
 
 
 
-## 2-D self-divergence
+## Self-divergence of samples from 2-dimensional Gaussian
  Estimate the divergence between two samples of size **N** drawn
     from the same 2D distribution with
     `mean=[0,0]` and `covariance=[[1, 0.1], [0.1, 1]]`.
@@ -77,16 +77,16 @@ These estimators have been benchmarked against [slaypni/universal-divergence](ht
 
 |    Estimator    |  D(P\|Q) | Time (s)|
 |-----------------|----------|---------|
-|naive_estimator  |-1.156e-04|1.76665|
-|scipy_estimator  |-1.156e-04|3.96410|
-|skl_estimator    |-1.156e-04|3.99259|
+|naive_estimator  |-1.156e-04|2.34603|
+|scipy_estimator  |-1.156e-04|4.52887|
+|skl_estimator    |-1.156e-04|6.47897|
 
 #### Convergence of estimator with *N*
 ![Convergence Plot](figures/self_divergence_2d_convergence.png)
 
 
 
-## 1-D divergence of Gaussians
+## Divergence of two 1-dimensional Gaussians
  Estimate the divergence between two samples of size `N` and dimension
     1, the first drawn from N(0,1), the second from N(2,1).
 
@@ -96,9 +96,9 @@ These estimators have been benchmarked against [slaypni/universal-divergence](ht
 
 |    Estimator    |  D(P\|Q) | Time (s)|
 |-----------------|----------|---------|
-|naive_estimator  | 1.811e+00|1.31149|
-|scipy_estimator  | 1.811e+00|2.43307|
-|skl_estimator    | 1.811e+00|3.69075|
+|naive_estimator  | 1.811e+00|1.45591|
+|scipy_estimator  | 1.811e+00|2.61625|
+|skl_estimator    | 1.811e+00|3.93510|
 
 #### Convergence of estimator with *N*
 ![Convergence Plot](figures/gaussian_divergence_1d_convergence.png)
