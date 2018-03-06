@@ -33,12 +33,12 @@ The estimator is that of
 
 |    Estimator    |  D(P\|Q) | Time (s)|
 |-----------------|----------|---------|
-|naive_estimator  | 2.032e-02|1.2554321|
-|scipy_estimator  | 2.032e-02|2.4017279|
-|skl_estimator    | 2.032e-02|3.5626271|
+|naive_estimator  | 2.032e-02|1.2643719|
+|scipy_estimator  | 2.032e-02|2.3593040|
+|skl_estimator    | 2.032e-02|3.5076678|
 
 #### Convergence of estimator with *N*
-![Convergence Plot](ConvergencePlots[test.filename])
+![Convergence Plot](figures/self_divergence_1d_convergence.png)
 
 
 
@@ -49,12 +49,12 @@ The estimator is that of
 
 |    Estimator    |  D(P\|Q) | Time (s)|
 |-----------------|----------|---------|
-|naive_estimator  |-1.156e-04|1.8913550|
-|scipy_estimator  |-1.156e-04|4.1763389|
-|skl_estimator    |-1.156e-04|3.6734109|
+|naive_estimator  |-1.156e-04|1.7376959|
+|scipy_estimator  |-1.156e-04|3.7870760|
+|skl_estimator    |-1.156e-04|3.5296741|
 
 #### Convergence of estimator with *N*
-![Convergence Plot](ConvergencePlots[test.filename])
+![Convergence Plot](figures/self_divergence_2d_convergence.png)
 
 
 
@@ -64,12 +64,12 @@ The estimator is that of
 
 |    Estimator    |  D(P\|Q) | Time (s)|
 |-----------------|----------|---------|
-|naive_estimator  | 3.455e+00|1.3573787|
-|scipy_estimator  | 3.455e+00|2.6382170|
-|skl_estimator    | 3.455e+00|4.2270157|
+|naive_estimator  | 3.455e+00|1.3168960|
+|scipy_estimator  | 3.455e+00|2.2062111|
+|skl_estimator    | 3.455e+00|3.5207391|
 
 #### Convergence of estimator with *N*
-![Convergence Plot](ConvergencePlots[test.filename])
+![Convergence Plot](figures/gaussian_divergence_1d_convergence.png)
 
 
 

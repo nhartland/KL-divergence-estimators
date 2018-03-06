@@ -29,7 +29,7 @@ The estimator is that of
 {%- endfor %}
 
 #### Convergence of estimator with *N*
-![Convergence Plot](ConvergencePlots[test.filename])
+![Convergence Plot]({{ConvergencePlots[test.filename]}})
 
 {% endfor %}
 
