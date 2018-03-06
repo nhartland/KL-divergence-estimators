@@ -7,8 +7,15 @@ The estimator is that of
 
 > Qing Wang, Sanjeev R. Kulkarni, and Sergio Verdú. "Divergence estimation for multidimensional densities via k-nearest-neighbor distances." Information Theory, IEEE Transactions on 55.5 (2009): 2392-2405.
 
+Samples are drawn from various test distributions, and the estimated
+KL-divergence between them is computed. Where given, uncertainties are
+assessed by re-sampling the distributions and re-computing divergence estimates
+`n_resamples=100` times. Uncertainty bands are then given as the interval
+containing 68% of the re-sampled estimates closest to the median.
+
 This study is far from exhaustive, and timings are sensitive to implementation
 details. Please take with a pinch of salt.
+
 
 # Estimator implementations
 

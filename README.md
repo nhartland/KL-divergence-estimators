@@ -7,8 +7,15 @@ The estimator is that of
 
 > Qing Wang, Sanjeev R. Kulkarni, and Sergio Verdú. "Divergence estimation for multidimensional densities via k-nearest-neighbor distances." Information Theory, IEEE Transactions on 55.5 (2009): 2392-2405.
 
+Samples are drawn from various test distributions, and the estimated
+KL-divergence between them is computed. Where given, uncertainties are
+assessed by re-sampling the distributions and re-computing divergence estimates
+`n_resamples=100` times. Uncertainty bands are then given as the interval
+containing 68% of the re-sampled estimates closest to the median.
+
 This study is far from exhaustive, and timings are sensitive to implementation
 details. Please take with a pinch of salt.
+
 
 # Estimator implementations
 
@@ -38,9 +45,9 @@ These estimators have been benchmarked against `slaypni/universal-divergence`.
 
 |    Estimator    |  D(P\|Q) | Time (s)|
 |-----------------|----------|---------|
-|naive_estimator  | 1.595e-03|13.35594|
-|scipy_estimator  | 1.595e-03|26.41331|
-|skl_estimator    | 1.595e-03|37.56228|
+|naive_estimator  | 1.595e-03|13.68163|
+|scipy_estimator  | 1.595e-03|26.40618|
+|skl_estimator    | 1.595e-03|39.54862|
 
 ### Convergence of estimator with *N*
 ![Convergence Plot](figures/self_divergence_1d_convergence.png)
@@ -54,9 +61,9 @@ These estimators have been benchmarked against `slaypni/universal-divergence`.
 
 |    Estimator    |  D(P\|Q) | Time (s)|
 |-----------------|----------|---------|
-|naive_estimator  |-6.811e-04|20.18910|
-|scipy_estimator  |-6.811e-04|47.07861|
-|skl_estimator    |-6.811e-04|36.89601|
+|naive_estimator  |-6.811e-04|18.88972|
+|scipy_estimator  |-6.811e-04|42.15842|
+|skl_estimator    |-6.811e-04|38.69412|
 
 ### Convergence of estimator with *N*
 ![Convergence Plot](figures/self_divergence_2d_convergence.png)
@@ -69,9 +76,9 @@ These estimators have been benchmarked against `slaypni/universal-divergence`.
 
 |    Estimator    |  D(P\|Q) | Time (s)|
 |-----------------|----------|---------|
-|naive_estimator  | 3.407e+00|12.74802|
-|scipy_estimator  | 3.407e+00|22.56478|
-|skl_estimator    | 3.407e+00|52.48217|
+|naive_estimator  | 3.407e+00|13.18947|
+|scipy_estimator  | 3.407e+00|24.32540|
+|skl_estimator    | 3.407e+00|40.26615|
 
 ### Convergence of estimator with *N*
 ![Convergence Plot](figures/gaussian_divergence_1d_convergence.png)
