@@ -18,8 +18,11 @@ n_resamples = 100
 def divergence_estimate_analysis(estimator, P, Q, sample_size, k, expectation):
     """ Estimate the divergence D(P||Q) between samples of size `sample size`
     drawn from the provided probability distributions `P` and `Q`.  Returns the
-    mean, variance and MSE of `n_resample = 100` sample iterations"""
-    np.random.seed(0)
+    mean, variance and MSE of `n_resample = 100` sample iterations.
+
+    NOTE: For consistency this function re-seeds the numpy RNG to ensure that
+    samples are identical between estimators"""
+    np.random.seed(0)  # Reseed the RNG
     start_time = time.time()
     log.debug(f"Divergence estimate: N = {sample_size}, iter = {n_resamples}")
     divergence_estimates = []
