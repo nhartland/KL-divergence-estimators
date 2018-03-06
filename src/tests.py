@@ -69,15 +69,15 @@ class self_divergence_estimate_2d:
 
 class gaussian_divergence_estimate_1d:
     """ Estimate the divergence between two samples of size `N` and dimension
-    1, the first drawn from N(0,1), the second from N(1,1)."""
+    1, the first drawn from N(0,1), the second from N(2,1)."""
     name  = "1-D divergence of Gaussians"
     filename = "gaussian_divergence_1d"
-    title = "$\hat{D}_{\\mathrm{KL}}(P||Q)$, $P \sim N(0,1)$, $Q \sim N(1,1)$"
-    expectation = gaussian_divergence(0, 1, 1, 1)
+    title = "$\hat{D}_{\\mathrm{KL}}(P||Q)$, $P \sim N(0,1)$, $Q \sim N(2,1)$"
+    expectation = gaussian_divergence(0, 2, 1, 1)
     def P(self, N):
         return np.random.multivariate_normal([0], [[1]], N)
     def Q(self, N):
-        return np.random.multivariate_normal([1], [[1]], N)
+        return np.random.multivariate_normal([2], [[1]], N)
     def compute(self, estimator, N, k):
         return divergence_estimate_analysis(estimator, self.P, self.Q, N, k, self.expectation)
 
