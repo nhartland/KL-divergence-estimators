@@ -1,5 +1,6 @@
 #!/usr/local/bin/python3
-""" Tests convergence of KL divergence (kNN) implementations with sample size"""
+""" Tests convergence of KL divergence (kNN) implementations with sample size """
+import os
 import numpy as np
 from matplotlib import rc
 import matplotlib.pyplot as plt
@@ -39,7 +40,7 @@ def convergence_plot(estimator, test):
     legend.get_frame().set_alpha(0.8)
 
     ax.set_title(f"Convergence of {test.title}")
-    rootname = f'figures/{test.filename}_convergence'
+    rootname  = os.path.join('figures', f'{test.filename}_convergence')
     fig.savefig(f'{rootname}.png')
     fig.savefig(f'{rootname}.pdf')
     return f'{rootname}.png'

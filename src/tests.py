@@ -14,7 +14,7 @@ from collections import namedtuple
 from exact_divergence import gaussian_divergence
 EstimatorStats = namedtuple("EstimatorStats", ["Estimator", "Mean", "Lower68", "Upper68", "MSE", "Time"])
 
-n_resamples = 100
+n_resamples = 10
 def divergence_estimate_analysis(estimator, P, Q, sample_size, k, expectation):
     """ Estimate the divergence D(P||Q) between samples of size `sample size`
     drawn from the provided probability distributions `P` and `Q`.  Returns the

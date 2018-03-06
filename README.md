@@ -18,7 +18,6 @@ on a sample size of `N=1000` with `k=5`.
 This study is far from exhaustive, and timings are sensitive to implementation
 details. Please take with a pinch of salt.
 
-
 # Estimator implementations
 
 
@@ -47,9 +46,9 @@ These estimators have been benchmarked against [slaypni/universal-divergence](ht
 
 |    Estimator    |  D(P\|Q) | Time (s)|
 |-----------------|----------|---------|
-|naive_estimator  | 1.595e-03|13.64245|
-|scipy_estimator  | 1.595e-03|28.56005|
-|skl_estimator    | 1.595e-03|38.06428|
+|naive_estimator  | 2.032e-02|1.24191|
+|scipy_estimator  | 2.032e-02|2.61104|
+|skl_estimator    | 2.032e-02|3.85769|
 
 ### Convergence of estimator with *N*
 ![Convergence Plot](figures/self_divergence_1d_convergence.png)
@@ -63,9 +62,9 @@ These estimators have been benchmarked against [slaypni/universal-divergence](ht
 
 |    Estimator    |  D(P\|Q) | Time (s)|
 |-----------------|----------|---------|
-|naive_estimator  |-6.811e-04|18.01025|
-|scipy_estimator  |-6.811e-04|40.82750|
-|skl_estimator    |-6.811e-04|38.85256|
+|naive_estimator  |-1.156e-04|1.77144|
+|scipy_estimator  |-1.156e-04|3.93847|
+|skl_estimator    |-1.156e-04|3.65214|
 
 ### Convergence of estimator with *N*
 ![Convergence Plot](figures/self_divergence_2d_convergence.png)
@@ -78,20 +77,18 @@ These estimators have been benchmarked against [slaypni/universal-divergence](ht
 
 |    Estimator    |  D(P\|Q) | Time (s)|
 |-----------------|----------|---------|
-|naive_estimator  | 3.407e+00|13.17255|
-|scipy_estimator  | 3.407e+00|24.23725|
-|skl_estimator    | 3.407e+00|37.14653|
+|naive_estimator  | 3.455e+00|1.34493|
+|scipy_estimator  | 3.455e+00|2.41726|
+|skl_estimator    | 3.455e+00|3.59548|
 
 ### Convergence of estimator with *N*
 ![Convergence Plot](figures/gaussian_divergence_1d_convergence.png)
 
-
-
-
 # Generating this document
 
 ```Shell
- python run_tests.py
+ python src/run_tests.py
+ cat templates/header.md report.md templates/footer.md > README.md
 ```
 
 Which will then likely take some time to complete.
@@ -107,3 +104,4 @@ Which will then likely take some time to complete.
 The number of resamples used to estimate uncertainties is defined by
 `n_resamples` in `tests.py`. This is naturally an *extremely* sensitive variable
 for how long the tests take to run.
+

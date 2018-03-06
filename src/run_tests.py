@@ -1,4 +1,10 @@
 #!/usr/bin/env python
+""" Rendering of report.md
+
+    This script loops over all tests defined in test.py and all
+    estimators defined in knn_divergence.py and generates the
+    quanitites needed for the report.
+"""
 import os
 import sys
 import logging
@@ -12,9 +18,8 @@ from knn_divergence import Estimators, naive_estimator
 logging.basicConfig(stream=sys.stdout, level=logging.INFO)
 
 # Jinja rendering
-PATH = os.path.dirname(os.path.abspath(__file__))
 TEMPLATE_ENVIRONMENT = Environment( autoescape=False,
-    loader=FileSystemLoader(os.path.join(PATH, 'templates')),
+    loader=FileSystemLoader(os.path.join(os.getcwd(), 'templates')),
     trim_blocks=False)
 
 
@@ -50,8 +55,8 @@ def main():
         'Tests': Tests,
         'Comparisons': generate_estimator_comparison(),
         'ConvergencePlots': generate_convergence_plots()}
-    with open("README.md", 'w') as f:
-        f.write(render_template("README.md", data))
+    with open("report.md", 'w') as f:
+        f.write(render_template("report.md", data))
 
 
 if __name__ == "__main__":
