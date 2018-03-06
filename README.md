@@ -50,15 +50,15 @@ These estimators have been benchmarked against [slaypni/universal-divergence](ht
 ## Self-divergence of samples from a 1-dimensional Gaussian
  Estimate the divergence between two samples of size **N** and dimension
     1, drawn from the same ~ N(0,1) probability distribution.
-The expected value for the divergence in this test is *D=0*.
+The expected value for the divergence in this test is **D=0**.
 
 #### Comparison of estimator implementations 
 
 |    Estimator    |  D(P\|Q) | Time (s)|
 |-----------------|----------|---------|
-|naive_estimator  | 2.032e-02|1.267|
-|scipy_estimator  | 2.032e-02|2.478|
-|skl_estimator    | 2.032e-02|3.857|
+|naive_estimator  | 1.595e-03|13.002|
+|scipy_estimator  | 1.595e-03|25.896|
+|skl_estimator    | 1.595e-03|36.832|
 
 #### Convergence of estimator with *N*
 ![Convergence Plot](figures/self_divergence_1d_convergence.png)
@@ -69,15 +69,15 @@ The expected value for the divergence in this test is *D=0*.
  Estimate the divergence between two samples of size **N** drawn
     from the same 2D distribution with
     `mean=[0,0]` and `covariance=[[1, 0.1], [0.1, 1]]`.
-The expected value for the divergence in this test is *D=0*.
+The expected value for the divergence in this test is **D=0**.
 
 #### Comparison of estimator implementations 
 
 |    Estimator    |  D(P\|Q) | Time (s)|
 |-----------------|----------|---------|
-|naive_estimator  |-1.156e-04|1.986|
-|scipy_estimator  |-1.156e-04|4.288|
-|skl_estimator    |-1.156e-04|3.759|
+|naive_estimator  |-6.811e-04|17.438|
+|scipy_estimator  |-6.811e-04|47.015|
+|skl_estimator    |-6.811e-04|37.707|
 
 #### Convergence of estimator with *N*
 ![Convergence Plot](figures/self_divergence_2d_convergence.png)
@@ -87,15 +87,15 @@ The expected value for the divergence in this test is *D=0*.
 ## Divergence of two 1-dimensional Gaussians
  Estimate the divergence between two samples of size `N` and dimension
     1. The first drawn from N(0,1), the second from N(2,1).
-The expected value for the divergence in this test is *D=2.0*.
+The expected value for the divergence in this test is **D=2.0**.
 
 #### Comparison of estimator implementations 
 
 |    Estimator    |  D(P\|Q) | Time (s)|
 |-----------------|----------|---------|
-|naive_estimator  | 1.811e+00|1.340|
-|scipy_estimator  | 1.811e+00|2.598|
-|skl_estimator    | 1.811e+00|3.901|
+|naive_estimator  | 1.790e+00|14.344|
+|scipy_estimator  | 1.790e+00|24.998|
+|skl_estimator    | 1.790e+00|35.024|
 
 #### Convergence of estimator with *N*
 ![Convergence Plot](figures/gaussian_divergence_1d_convergence.png)
@@ -103,7 +103,7 @@ The expected value for the divergence in this test is *D=2.0*.
 # Generating this document
 
 ```Shell
- python src/run_tests.py
+ ./src/run_tests.py
  cat templates/header.md report.md templates/footer.md > README.md
 ```
 
