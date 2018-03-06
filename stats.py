@@ -12,7 +12,7 @@ import numpy as np
 from collections import namedtuple
 
 from exact_divergence import gaussian_divergence
-EstimatorStats = namedtuple("EstimatorStats", ["Mean", "Lower68", "Upper68", "MSE", "Time"])
+EstimatorStats = namedtuple("EstimatorStats", ["Estimator", "Mean", "Lower68", "Upper68", "MSE", "Time"])
 
 n_resamples = 100
 def divergence_estimate_analysis(estimator, P, Q, sample_size, k, expectation):
@@ -38,7 +38,7 @@ def divergence_estimate_analysis(estimator, P, Q, sample_size, k, expectation):
     Lower = Mean - divergence_estimates[lower_limit]
     Upper = divergence_estimates[upper_limit] - Mean
     MSE   = ((divergence_estimates - expectation) ** 2).mean()
-    return EstimatorStats(Mean, Lower, Upper, MSE, time.time() - start_time)
+    return EstimatorStats(estimator.__name__, Mean, Lower, Upper, MSE, time.time() - start_time)
 
 
 class self_divergence_estimate_1d:
