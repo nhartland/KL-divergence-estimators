@@ -6,9 +6,9 @@ import logging
 
 from jinja2 import Environment, FileSystemLoader
 
+from tests import Tests
 from plots import convergence_plot
 from knn_divergence import Estimators, naive_estimator
-from stats import Tests
 
 logging.basicConfig(stream=sys.stdout, level=logging.INFO)
 
