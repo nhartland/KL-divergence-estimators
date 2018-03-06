@@ -43,13 +43,14 @@ These estimators have been benchmarked against [slaypni/universal-divergence](ht
 ## 1-D self-divergence
  Estimate the divergence between two samples of size **N** and dimension
     1, drawn from the same ~ N(0,1) probability distribution.
+
 ***Expectation: 0***
 
 |    Estimator    |  D(P\|Q) | Time (s)|
 |-----------------|----------|---------|
-|naive_estimator  | 2.032e-02|1.25009|
-|scipy_estimator  | 2.032e-02|2.41054|
-|skl_estimator    | 2.032e-02|3.57896|
+|naive_estimator  | 2.032e-02|1.26616|
+|scipy_estimator  | 2.032e-02|2.39158|
+|skl_estimator    | 2.032e-02|3.56940|
 
 ### Convergence of estimator with *N*
 ![Convergence Plot](figures/self_divergence_1d_convergence.png)
@@ -60,13 +61,14 @@ These estimators have been benchmarked against [slaypni/universal-divergence](ht
  Estimate the divergence between two samples of size **N** drawn
     from the same 2D distribution with
     `mean=[0,0]` and `covariance=[[1, 0.1], [0.1, 1]]`.
+
 ***Expectation: 0***
 
 |    Estimator    |  D(P\|Q) | Time (s)|
 |-----------------|----------|---------|
-|naive_estimator  |-1.156e-04|1.70435|
-|scipy_estimator  |-1.156e-04|3.77404|
-|skl_estimator    |-1.156e-04|3.57555|
+|naive_estimator  |-1.156e-04|1.71644|
+|scipy_estimator  |-1.156e-04|3.81967|
+|skl_estimator    |-1.156e-04|3.62845|
 
 ### Convergence of estimator with *N*
 ![Convergence Plot](figures/self_divergence_2d_convergence.png)
@@ -76,13 +78,14 @@ These estimators have been benchmarked against [slaypni/universal-divergence](ht
 ## 1-D divergence of Gaussians
  Estimate the divergence between two samples of size `N` and dimension
     1, the first drawn from N(0,1), the second from N(1,1).
+
 ***Expectation: 0.5***
 
 |    Estimator    |  D(P\|Q) | Time (s)|
 |-----------------|----------|---------|
-|naive_estimator  | 4.963e-01|1.27814|
-|scipy_estimator  | 4.963e-01|2.41309|
-|skl_estimator    | 4.963e-01|3.56777|
+|naive_estimator  | 4.963e-01|1.25712|
+|scipy_estimator  | 4.963e-01|2.43408|
+|skl_estimator    | 4.963e-01|3.73556|
 
 ### Convergence of estimator with *N*
 ![Convergence Plot](figures/gaussian_divergence_1d_convergence.png)
