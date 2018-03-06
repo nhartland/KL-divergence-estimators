@@ -14,7 +14,8 @@ from collections import namedtuple
 from exact_divergence import gaussian_divergence
 EstimatorStats = namedtuple("EstimatorStats", ["Estimator", "Mean", "Lower68", "Upper68", "MSE", "Time"])
 
-n_resamples = 100
+# TODO Make this at least 100
+n_resamples = 10
 def divergence_estimate_analysis(estimator, P, Q, sample_size, k, expectation):
     """ Estimate the divergence D(P||Q) between samples of size `sample size`
     drawn from the provided probability distributions `P` and `Q`.  Returns the
@@ -24,7 +25,7 @@ def divergence_estimate_analysis(estimator, P, Q, sample_size, k, expectation):
     samples are identical between estimators"""
     np.random.seed(0)  # Reseed the RNG
     start_time = time.time()
-    log.debug(f"Divergence estimate: N = {sample_size}, iter = {n_resamples}")
+    log.info(f" Running test with {estimator.__name__}: N = {sample_size}, iter = {n_resamples}")
     divergence_estimates = []
     for resample in range(0, n_resamples):
         P_sample = P(sample_size)

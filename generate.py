@@ -1,18 +1,22 @@
 #!/usr/bin/env python
 
 import os
+import sys
+import logging
+
 from jinja2 import Environment, FileSystemLoader
 
-from knn_divergence import Estimators
+from plots import convergence_plot
+from knn_divergence import Estimators, naive_estimator
 from stats import Tests
 
+logging.basicConfig(stream=sys.stdout, level=logging.INFO)
 
 def generate_estimator_comparison():
     """ Generates a comparison of the estimator results for all estimators and
     tests.  Returns a dictionary indexed by test 'filename' containing lists of
     EstimatorStats."""
-    #TODO change up to N=100
-    N, k = 10, 5
+    N, k = 1000, 5
     estimator_comparison = {}
     for test in Tests:
         estimator_comparison[test.filename] = []
@@ -20,6 +24,14 @@ def generate_estimator_comparison():
             result = test.compute(estimator, N, k)
             estimator_comparison[test.filename].append(result)
     return estimator_comparison
+
+
+def generate_convergence_plots():
+    """ Generates plots of the convergence of the estimator with `N` """
+    convergence_plots = {}
+    for test in Tests:
+        convergence_plots[test.filename] = convergence_plot(naive_estimator, test)
+    return convergence_plots
 
 
 PATH = os.path.dirname(os.path.abspath(__file__))
@@ -39,7 +51,8 @@ def create_index_html():
     context = {
         'Estimators': Estimators,
         'Tests': Tests,
-        'Comparisons': generate_estimator_comparison()
+        'Comparisons': generate_estimator_comparison(),
+        'ConvergencePlots': generate_convergence_plots()
     }
     #
     with open(fname, 'w') as f:

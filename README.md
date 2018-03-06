@@ -10,15 +10,15 @@ The estimator is that of
 # Estimator implementations
 
 
- - *naive_estimator*
+ - **naive_estimator**
 
     KL-Divergence estimator using brute-force (numpy) k-NN
 
- - *scipy_estimator*
+ - **scipy_estimator**
 
     KL-Divergence estimator using scipy's KDTree
 
- - *skl_estimator*
+ - **skl_estimator**
 
     KL-Divergence estimator using scikit-learn's NearestNeighbours
 
@@ -33,9 +33,12 @@ The estimator is that of
 
 |    Estimator    |  D(P\|Q) | Time (s)|
 |-----------------|----------|---------|
-|naive_estimator  | 5.367e-03|0.0556660|
-|scipy_estimator  | 5.367e-03|0.1419210|
-|skl_estimator    | 5.367e-03|0.4678290|
+|naive_estimator  | 2.032e-02|1.2518559|
+|scipy_estimator  | 2.032e-02|2.4318631|
+|skl_estimator    | 2.032e-02|3.4979951|
+
+#### Convergence of estimator with *N*
+![Convergence Plot](figures/self_divergence_1d_convergence.pdf)
 
 
 
@@ -46,9 +49,12 @@ The estimator is that of
 
 |    Estimator    |  D(P\|Q) | Time (s)|
 |-----------------|----------|---------|
-|naive_estimator  |-5.814e-02|0.0657251|
-|scipy_estimator  |-5.814e-02|0.1501229|
-|skl_estimator    |-5.814e-02|0.4667468|
+|naive_estimator  |-1.156e-04|1.7178328|
+|scipy_estimator  |-1.156e-04|4.0345771|
+|skl_estimator    |-1.156e-04|3.5702741|
+
+#### Convergence of estimator with *N*
+![Convergence Plot](figures/self_divergence_2d_convergence.pdf)
 
 
 
@@ -58,9 +64,12 @@ The estimator is that of
 
 |    Estimator    |  D(P\|Q) | Time (s)|
 |-----------------|----------|---------|
-|naive_estimator  | 1.173e+00|0.0565381|
-|scipy_estimator  | 1.173e+00|0.1454680|
-|skl_estimator    | 1.173e+00|0.4728351|
+|naive_estimator  | 3.455e+00|1.2972312|
+|scipy_estimator  | 3.455e+00|2.2473729|
+|skl_estimator    | 3.455e+00|3.5317891|
+
+#### Convergence of estimator with *N*
+![Convergence Plot](figures/gaussian_divergence_1d_convergence.pdf)
 
 
 

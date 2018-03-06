@@ -10,7 +10,7 @@ The estimator is that of
 # Estimator implementations
 
 {% for estimator in Estimators %}
- - *{{ estimator.__name__ }}*
+ - **{{ estimator.__name__ }}**
 
    {{ estimator.__doc__.splitlines()[0] }}
 {% endfor %}
@@ -27,6 +27,9 @@ The estimator is that of
 {%- for comp in Comparisons[test.filename] %}
 {{'|%-17s|% -.3e|%.7f|' % (comp.Estimator, comp.Mean, comp.Time) }}
 {%- endfor %}
+
+#### Convergence of estimator with *N*
+![Convergence Plot](figures/{{test.filename}}_convergence.pdf)
 
 {% endfor %}
 

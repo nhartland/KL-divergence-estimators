@@ -3,26 +3,24 @@
 import numpy as np
 from matplotlib import rc
 import matplotlib.pyplot as plt
-import stats
-
-from knn_divergence import naive_estimator as kld
+import logging as log
 
 rc('font', **{'family': 'sans-serif', 'sans-serif': ['Helvetica']})
 rc('text', usetex=True)
 
-k_values = [1, 5, 10]
-sample_sizes = [20, 50, 100, 200, 500, 1000]
 
-tests = [stats.self_divergence_estimate_1d(),
-         stats.self_divergence_estimate_2d(),
-         stats.gaussian_divergence_estimate_1d()]
+def convergence_plot(estimator, test):
+    """ Generates a plot of the convergence of an estimator with the sample
+    size `N` in the case of a specific `test`.  Writes the plot to
+    /figures/[test filename]_convergence.pdf and returns the filename."""
 
-for test in tests:
+    k_values = [1, 5, 10]
+    sample_sizes = [20, 50, 100, 200, 500, 1000]
+
     fig, ax = plt.subplots()
 
-    self_divergence_vectorized = np.vectorize(test)
     for ik, k in enumerate(k_values):
-        results = [test.compute(kld, N, k) for N in sample_sizes]
+        results = [test.compute(estimator, N, k) for N in sample_sizes]
         means   = [result.Mean for result in results]
         errup   = [result.Upper68 for result in results]
         errdn   = [result.Lower68 for result in results]
@@ -42,4 +40,4 @@ for test in tests:
     legend.get_frame().set_alpha(0.8)
 
     ax.set_title(f"Convergence of {test.title}")
-    fig.savefig(f'{test.name}_convergence.pdf')
+    fig.savefig(f'figures/{test.filename}_convergence.pdf')
