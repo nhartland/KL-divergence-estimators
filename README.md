@@ -47,39 +47,37 @@ These estimators have been benchmarked against [slaypni/universal-divergence](ht
 
 
 
-## Self-divergence of samples from 1-dimensional Gaussian
+## Self-divergence of samples from a 1-dimensional Gaussian
  Estimate the divergence between two samples of size **N** and dimension
     1, drawn from the same ~ N(0,1) probability distribution.
-
-***Expectation: 0***
+The expected value for the divergence in this test is ***D={test.expectation}***.
 
 #### Comparison of estimator implementations 
 
 |    Estimator    |  D(P\|Q) | Time (s)|
 |-----------------|----------|---------|
-|naive_estimator  | 2.032e-02|1.28742|
-|scipy_estimator  | 2.032e-02|2.41608|
-|skl_estimator    | 2.032e-02|3.81711|
+|naive_estimator  | 2.032e-02|1.26031|
+|scipy_estimator  | 2.032e-02|2.64276|
+|skl_estimator    | 2.032e-02|3.81333|
 
 #### Convergence of estimator with *N*
 ![Convergence Plot](figures/self_divergence_1d_convergence.png)
 
 
 
-## Self-divergence of samples from 2-dimensional Gaussian
+## Self-divergence of samples from a 2-dimensional Gaussian
  Estimate the divergence between two samples of size **N** drawn
     from the same 2D distribution with
     `mean=[0,0]` and `covariance=[[1, 0.1], [0.1, 1]]`.
-
-***Expectation: 0***
+The expected value for the divergence in this test is ***D={test.expectation}***.
 
 #### Comparison of estimator implementations 
 
 |    Estimator    |  D(P\|Q) | Time (s)|
 |-----------------|----------|---------|
-|naive_estimator  |-1.156e-04|2.34603|
-|scipy_estimator  |-1.156e-04|4.52887|
-|skl_estimator    |-1.156e-04|6.47897|
+|naive_estimator  |-1.156e-04|1.90569|
+|scipy_estimator  |-1.156e-04|5.77351|
+|skl_estimator    |-1.156e-04|4.96988|
 
 #### Convergence of estimator with *N*
 ![Convergence Plot](figures/self_divergence_2d_convergence.png)
@@ -88,17 +86,16 @@ These estimators have been benchmarked against [slaypni/universal-divergence](ht
 
 ## Divergence of two 1-dimensional Gaussians
  Estimate the divergence between two samples of size `N` and dimension
-    1, the first drawn from N(0,1), the second from N(2,1).
-
-***Expectation: 2.0***
+    1. The first drawn from N(0,1), the second from N(2,1).
+The expected value for the divergence in this test is ***D={test.expectation}***.
 
 #### Comparison of estimator implementations 
 
 |    Estimator    |  D(P\|Q) | Time (s)|
 |-----------------|----------|---------|
-|naive_estimator  | 1.811e+00|1.45591|
-|scipy_estimator  | 1.811e+00|2.61625|
-|skl_estimator    | 1.811e+00|3.93510|
+|naive_estimator  | 1.811e+00|1.39261|
+|scipy_estimator  | 1.811e+00|2.51611|
+|skl_estimator    | 1.811e+00|3.76064|
 
 #### Convergence of estimator with *N*
 ![Convergence Plot](figures/gaussian_divergence_1d_convergence.png)

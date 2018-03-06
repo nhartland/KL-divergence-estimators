@@ -44,7 +44,7 @@ def divergence_estimate_analysis(estimator, P, Q, sample_size, k, expectation):
 class self_divergence_estimate_1d:
     """ Estimate the divergence between two samples of size **N** and dimension
     1, drawn from the same ~ N(0,1) probability distribution."""
-    name  = "Self-divergence of samples from 1-dimensional Gaussian"
+    name  = "Self-divergence of samples from a 1-dimensional Gaussian"
     filename = "self_divergence_1d"
     title = "$\hat{D}_{\\mathrm{KL}}(P||P)$, $P \sim N(0,1)$"
     expectation = 0
@@ -57,7 +57,7 @@ class self_divergence_estimate_2d:
     """ Estimate the divergence between two samples of size **N** drawn
     from the same 2D distribution with
     `mean=[0,0]` and `covariance=[[1, 0.1], [0.1, 1]]`."""
-    name  = "Self-divergence of samples from 2-dimensional Gaussian"
+    name  = "Self-divergence of samples from a 2-dimensional Gaussian"
     filename = "self_divergence_2d"
     title = "$\hat{D}_{\\mathrm{KL}}(P||P)$, $P \sim N(\mathbf{0},[[1, 0.1],[0.1, 1]])$"
     expectation = 0
@@ -69,7 +69,7 @@ class self_divergence_estimate_2d:
 
 class gaussian_divergence_estimate_1d:
     """ Estimate the divergence between two samples of size `N` and dimension
-    1, the first drawn from N(0,1), the second from N(2,1)."""
+    1. The first drawn from N(0,1), the second from N(2,1)."""
     name  = "Divergence of two 1-dimensional Gaussians"
     filename = "gaussian_divergence_1d"
     title = "$\hat{D}_{\\mathrm{KL}}(P||Q)$, $P \sim N(0,1)$, $Q \sim N(2,1)$"
