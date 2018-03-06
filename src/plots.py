@@ -15,7 +15,7 @@ def convergence_plot(estimator, test):
     /figures/[test filename]_convergence.pdf and returns the filename."""
 
     k_values = [1, 5, 10]
-    sample_sizes = [20, 50, 100, 200, 500, 1000, 2000, 5000]
+    sample_sizes = [20, 50, 100, 200, 500, 1000]
 
     fig, ax = plt.subplots()
 
