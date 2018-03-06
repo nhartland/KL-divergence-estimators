@@ -3,7 +3,7 @@
     Provides a few (ducktyped) classes implementing analyses of KL-divergence estimators.
     Each analysis defines two probability distributions to be compared, and produces
     the KL-Divergence estimate along with an error estimate (the central 68% of values in
-    `n_resample=100` resamples of the probability distributions).
+    `n_resamples=100` resamples of the probability distributions).
 
 """
 import time
@@ -12,7 +12,7 @@ import numpy as np
 from collections import namedtuple
 
 from exact_divergence import gaussian_divergence
-EstimatorStats = namedtuple("EstimatorStats", ["Mean", "Lower68", "Upper68", "MSE", "Time"])
+EstimatorStats = namedtuple("EstimatorStats", ["Estimator", "Mean", "Lower68", "Upper68", "MSE", "Time"])
 
 n_resamples = 100
 def divergence_estimate_analysis(estimator, P, Q, sample_size, k, expectation):
@@ -24,7 +24,7 @@ def divergence_estimate_analysis(estimator, P, Q, sample_size, k, expectation):
     samples are identical between estimators"""
     np.random.seed(0)  # Reseed the RNG
     start_time = time.time()
-    log.debug(f"Divergence estimate: N = {sample_size}, iter = {n_resamples}")
+    log.info(f" Running test with {estimator.__name__}: N = {sample_size}, iter = {n_resamples}")
     divergence_estimates = []
     for resample in range(0, n_resamples):
         P_sample = P(sample_size)
@@ -38,13 +38,13 @@ def divergence_estimate_analysis(estimator, P, Q, sample_size, k, expectation):
     Lower = Mean - divergence_estimates[lower_limit]
     Upper = divergence_estimates[upper_limit] - Mean
     MSE   = ((divergence_estimates - expectation) ** 2).mean()
-    return EstimatorStats(Mean, Lower, Upper, MSE, time.time() - start_time)
+    return EstimatorStats(estimator.__name__, Mean, Lower, Upper, MSE, time.time() - start_time)
 
 
 class self_divergence_estimate_1d:
-    """ Estimate the divergence between two samples of size `N` and dimension
+    """ Estimate the divergence between two samples of size **N** and dimension
     1, drawn from the same ~ N(0,1) probability distribution."""
-    name  = "1-D self-divergence"
+    name  = "Self-divergence of samples from a 1-dimensional Gaussian"
     filename = "self_divergence_1d"
     title = "$\hat{D}_{\\mathrm{KL}}(P||P)$, $P \sim N(0,1)$"
     expectation = 0
@@ -54,10 +54,10 @@ class self_divergence_estimate_1d:
         return divergence_estimate_analysis(estimator, self.P, self.P, N, k, self.expectation)
 
 class self_divergence_estimate_2d:
-    """ Estimate the divergence between two samples of size `N` drawn
+    """ Estimate the divergence between two samples of size **N** drawn
     from the same 2D distribution with
-    mean=[0,0] and covariance=[[1, 0.1], [0.1, 1]] """
-    name  = "2-D self-divergence"
+    `mean=[0,0]` and `covariance=[[1, 0.1], [0.1, 1]]`."""
+    name  = "Self-divergence of samples from a 2-dimensional Gaussian"
     filename = "self_divergence_2d"
     title = "$\hat{D}_{\\mathrm{KL}}(P||P)$, $P \sim N(\mathbf{0},[[1, 0.1],[0.1, 1]])$"
     expectation = 0
@@ -69,15 +69,15 @@ class self_divergence_estimate_2d:
 
 class gaussian_divergence_estimate_1d:
     """ Estimate the divergence between two samples of size `N` and dimension
-    1. The first drawn from N(0,1), the second from N(3,1)."""
-    name  = "1-D divergence of Gaussians"
+    1. The first drawn from N(0,1), the second from N(2,1)."""
+    name  = "Divergence of two 1-dimensional Gaussians"
     filename = "gaussian_divergence_1d"
-    title = "$\hat{D}_{\\mathrm{KL}}(P||Q)$, $P \sim N(0,1)$, $Q \sim N(3,1)$"
-    expectation = gaussian_divergence(0, 3, 1, 1)
+    title = "$\hat{D}_{\\mathrm{KL}}(P||Q)$, $P \sim N(0,1)$, $Q \sim N(2,1)$"
+    expectation = gaussian_divergence(0, 2, 1, 1)
     def P(self, N):
         return np.random.multivariate_normal([0], [[1]], N)
     def Q(self, N):
-        return np.random.multivariate_normal([3], [[1]], N)
+        return np.random.multivariate_normal([2], [[1]], N)
     def compute(self, estimator, N, k):
         return divergence_estimate_analysis(estimator, self.P, self.Q, N, k, self.expectation)
 
