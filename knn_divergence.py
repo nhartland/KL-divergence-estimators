@@ -34,7 +34,7 @@ def verify_sample_shapes(s1, s2, k):
 
 
 def naive_estimator(s1, s2, k=1):
-    """ KL-Divergence estimator using brute-force k-NN
+    """ KL-Divergence estimator using brute-force (numpy) k-NN
         s1: (N_1,D) Sample drawn from distribution P
         s2: (N_2,D) Sample drawn from distribution Q
         k: Number of neighbours considered (default 1)
@@ -101,3 +101,7 @@ def skl_estimator(s1, s2, k=1):
         nu = s2_distances[0][-1]
         D += (d/n)*np.log(nu/rho)
     return D
+
+
+# List of all estimators
+Estimators = [naive_estimator, scipy_estimator, skl_estimator]

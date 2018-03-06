@@ -5,6 +5,8 @@ from matplotlib import rc
 import matplotlib.pyplot as plt
 import stats
 
+from knn_divergence import naive_estimator as kld
+
 rc('font', **{'family': 'sans-serif', 'sans-serif': ['Helvetica']})
 rc('text', usetex=True)
 
@@ -20,7 +22,7 @@ for test in tests:
 
     self_divergence_vectorized = np.vectorize(test)
     for ik, k in enumerate(k_values):
-        results = [test.compute(N, k) for N in sample_sizes]
+        results = [test.compute(kld, N, k) for N in sample_sizes]
         means   = [result.Mean for result in results]
         errup   = [result.Upper68 for result in results]
         errdn   = [result.Lower68 for result in results]
