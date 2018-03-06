@@ -3,7 +3,6 @@
 import numpy as np
 from matplotlib import rc
 import matplotlib.pyplot as plt
-import logging as log
 
 rc('font', **{'family': 'sans-serif', 'sans-serif': ['Helvetica']})
 rc('text', usetex=True)
@@ -40,4 +39,8 @@ def convergence_plot(estimator, test):
     legend.get_frame().set_alpha(0.8)
 
     ax.set_title(f"Convergence of {test.title}")
-    fig.savefig(f'figures/{test.filename}_convergence.pdf')
+    rootname = f'figures/{test.filename}_convergence'
+    fig.savefig(f'{rootname}.png')
+    fig.savefig(f'{rootname}.pdf')
+    return f'{rootname}.png'
+
