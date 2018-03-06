@@ -10,8 +10,10 @@ The estimator is that of
 Samples are drawn from various test distributions, and the estimated
 KL-divergence between them is computed. Where given, uncertainties are
 assessed by re-sampling the distributions and re-computing divergence estimates
-`n_resamples=100` times. Uncertainty bands are then given as the interval
-containing 68% of the re-sampled estimates closest to the median.
+100 times. Uncertainty bands are then given as the interval
+containing 68% of the re-sampled estimates closest to the median. Timings
+where provided are the time taken for the computation of all 100 re-samples
+on a sample size of `N=1000` with `k=5`.
 
 This study is far from exhaustive, and timings are sensitive to implementation
 details. Please take with a pinch of salt.
@@ -33,7 +35,7 @@ details. Please take with a pinch of salt.
     KL-Divergence estimator using scikit-learn's NearestNeighbours
 
 
-These estimators have been benchmarked against `slaypni/universal-divergence`.
+These estimators have been benchmarked against [slaypni/universal-divergence](https://github.com/slaypni/universal-divergence).
 
 # Tests
 
@@ -45,9 +47,9 @@ These estimators have been benchmarked against `slaypni/universal-divergence`.
 
 |    Estimator    |  D(P\|Q) | Time (s)|
 |-----------------|----------|---------|
-|naive_estimator  | 1.595e-03|13.68163|
-|scipy_estimator  | 1.595e-03|26.40618|
-|skl_estimator    | 1.595e-03|39.54862|
+|naive_estimator  | 1.595e-03|13.64245|
+|scipy_estimator  | 1.595e-03|28.56005|
+|skl_estimator    | 1.595e-03|38.06428|
 
 ### Convergence of estimator with *N*
 ![Convergence Plot](figures/self_divergence_1d_convergence.png)
@@ -61,9 +63,9 @@ These estimators have been benchmarked against `slaypni/universal-divergence`.
 
 |    Estimator    |  D(P\|Q) | Time (s)|
 |-----------------|----------|---------|
-|naive_estimator  |-6.811e-04|18.88972|
-|scipy_estimator  |-6.811e-04|42.15842|
-|skl_estimator    |-6.811e-04|38.69412|
+|naive_estimator  |-6.811e-04|18.01025|
+|scipy_estimator  |-6.811e-04|40.82750|
+|skl_estimator    |-6.811e-04|38.85256|
 
 ### Convergence of estimator with *N*
 ![Convergence Plot](figures/self_divergence_2d_convergence.png)
@@ -76,9 +78,9 @@ These estimators have been benchmarked against `slaypni/universal-divergence`.
 
 |    Estimator    |  D(P\|Q) | Time (s)|
 |-----------------|----------|---------|
-|naive_estimator  | 3.407e+00|13.18947|
-|scipy_estimator  | 3.407e+00|24.32540|
-|skl_estimator    | 3.407e+00|40.26615|
+|naive_estimator  | 3.407e+00|13.17255|
+|scipy_estimator  | 3.407e+00|24.23725|
+|skl_estimator    | 3.407e+00|37.14653|
 
 ### Convergence of estimator with *N*
 ![Convergence Plot](figures/gaussian_divergence_1d_convergence.png)
@@ -97,7 +99,8 @@ Which will then likely take some time to complete.
 #### Requirements
 
 - Python >= 3.6
-- scipy, scikit-learn, jinja2 
+- scipy, scikit-learn
+- matplotlib, jinja2
 
 #### Important settings
 
