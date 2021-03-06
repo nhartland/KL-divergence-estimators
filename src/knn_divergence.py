@@ -14,9 +14,11 @@
     No guarantees are made w.r.t the efficiency of these implementations.
 
 """
+import warnings
+
 import numpy as np
-from sklearn.neighbors import NearestNeighbors
 from scipy.spatial import KDTree
+from sklearn.neighbors import NearestNeighbors
 
 
 def knn_distance(point, sample, k):
@@ -101,6 +103,36 @@ def skl_estimator(s1, s2, k=1):
         nu = s2_distances[0][-1]
         D += (d/n)*np.log(nu/rho)
     return D
+
+def skl_estimator_efficient(s1, s2, k=1):
+        """ KL-Divergence estimator using scikit-learn's NearestNeighbours
+            s1: (N_1,D) Sample drawn from distribution P
+            s2: (N_2,D) Sample drawn from distribution Q
+            k: Number of neighbours considered (default 1)
+            return: estimated D(P|Q)
+        """
+        verify_sample_shapes(s1, s2, k)
+
+        n, m = len(s1), len(s2)
+        d = float(s1.shape[1])
+
+        radius = 10  # this is useless
+        s1_neighbourhood = NearestNeighbors(n_neighbors=k + 1, radius=radius, algorithm='kd_tree').fit(s1)
+        s2_neighbourhood = NearestNeighbors(n_neighbors=k, radius=radius, algorithm='kd_tree').fit(s2)
+
+        s1_distances, indices = s1_neighbourhood.kneighbors(s1, k + 1)
+        s2_distances, indices = s2_neighbourhood.kneighbors(s1, k)
+        rho = s1_distances[:, -1]
+        nu = s2_distances[:, -1]
+        if np.any(rho == 0):
+            warnings.warn(
+                f"The distance between an element of the first dataset and its {k}-th NN in the same dataset "
+                f"is 0; this causes divergences in the code, and it is due to elements which are repeated "
+                f"{k + 1} times in the first dataset. Increasing the value of k usually solves this.",
+                RuntimeWarning)
+        D = np.sum(np.log(nu / rho))
+
+        return (d / n) * D + np.log(m / (n - 1))  # this second term should be enough for it to be valid for m \neq n
 
 
 # List of all estimators
