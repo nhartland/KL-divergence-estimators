@@ -9,7 +9,7 @@
     The implementations are through:
         numpy (naive_estimator)
         scipy (scipy_estimator)
-        scikit-learn (skl_estimator / skl_estimator_efficient)
+        scikit-learn (skl_estimator / skl_efficient)
 
     No guarantees are made w.r.t the efficiency of these implementations.
 
@@ -110,12 +110,14 @@ def skl_estimator(s1, s2, k=1):
     return D
 
 
-def skl_estimator_efficient(s1, s2, k=1):
+def skl_efficient(s1, s2, k=1):
     """KL-Divergence estimator using scikit-learn's NearestNeighbours
     s1: (N_1,D) Sample drawn from distribution P
     s2: (N_2,D) Sample drawn from distribution Q
     k: Number of neighbours considered (default 1)
     return: estimated D(P|Q)
+
+    Contributed by Lorenzo Pacchiardi (@LoryPack)
     """
     verify_sample_shapes(s1, s2, k)
 
@@ -144,4 +146,4 @@ def skl_estimator_efficient(s1, s2, k=1):
 
 
 # List of all estimators
-Estimators = [naive_estimator, scipy_estimator, skl_estimator, skl_estimator_efficient]
+Estimators = [naive_estimator, scipy_estimator, skl_estimator, skl_efficient]
