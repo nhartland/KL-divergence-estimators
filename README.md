@@ -56,9 +56,9 @@ The expected value for the divergence in this test is **D=0**.
 
 |    Estimator    |  D(P\|Q) | Time (s)|
 |-----------------|----------|---------|
-|naive_estimator  | 1.595e-03|13.002|
-|scipy_estimator  | 1.595e-03|25.896|
-|skl_estimator    | 1.595e-03|36.832|
+|naive_estimator  | 1.595e-03|10.537|
+|scipy_estimator  | 1.595e-03|0.145|
+|skl_estimator    | 1.595e-03|24.100|
 
 #### Convergence of estimator with *N*
 ![Convergence Plot](figures/self_divergence_1d_convergence.png)
@@ -75,9 +75,9 @@ The expected value for the divergence in this test is **D=0**.
 
 |    Estimator    |  D(P\|Q) | Time (s)|
 |-----------------|----------|---------|
-|naive_estimator  |-6.811e-04|17.438|
-|scipy_estimator  |-6.811e-04|47.015|
-|skl_estimator    |-6.811e-04|37.707|
+|naive_estimator  |-6.811e-04|13.091|
+|scipy_estimator  |-6.811e-04|0.241|
+|skl_estimator    |-6.811e-04|24.260|
 
 #### Convergence of estimator with *N*
 ![Convergence Plot](figures/self_divergence_2d_convergence.png)
@@ -93,27 +93,27 @@ The expected value for the divergence in this test is **D=2.0**.
 
 |    Estimator    |  D(P\|Q) | Time (s)|
 |-----------------|----------|---------|
-|naive_estimator  | 1.790e+00|14.344|
-|scipy_estimator  | 1.790e+00|24.998|
-|skl_estimator    | 1.790e+00|35.024|
+|naive_estimator  | 1.790e+00|9.305|
+|scipy_estimator  | 1.790e+00|0.138|
+|skl_estimator    | 1.790e+00|24.126|
 
 #### Convergence of estimator with *N*
 ![Convergence Plot](figures/gaussian_divergence_1d_convergence.png)
 
 # Generating this document
 
+Start in a clean python 3.10 environment and run the following
+
 ```Shell
+ # Setup dependencies
+ pip install -r requirements.txt
+ # Run the tests and generate the figures
  ./src/run_tests.py
+ # Add the header and footer to the report
  cat templates/header.md report.md templates/footer.md > README.md
 ```
 
 Which will then likely take some time to complete.
-
-#### Requirements
-
-- Python >= 3.6
-- scipy, scikit-learn
-- matplotlib, jinja2
 
 #### Important settings
 
