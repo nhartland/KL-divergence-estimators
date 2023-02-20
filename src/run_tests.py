@@ -13,14 +13,16 @@ from jinja2 import Environment, FileSystemLoader
 
 from tests import Tests
 from plots import convergence_plot
-from knn_divergence import Estimators, naive_estimator
+from knn_divergence import Estimators, scipy_estimator
 
 logging.basicConfig(stream=sys.stdout, level=logging.INFO)
 
 # Jinja rendering
-TEMPLATE_ENVIRONMENT = Environment( autoescape=False,
-    loader=FileSystemLoader(os.path.join(os.getcwd(), 'templates')),
-    trim_blocks=False)
+TEMPLATE_ENVIRONMENT = Environment(
+    autoescape=False,
+    loader=FileSystemLoader(os.path.join(os.getcwd(), "templates")),
+    trim_blocks=False,
+)
 
 
 def render_template(template_filename, context):
@@ -28,7 +30,7 @@ def render_template(template_filename, context):
 
 
 def generate_estimator_comparison():
-    """ Generates a comparison of the estimator results for all estimators and
+    """Generates a comparison of the estimator results for all estimators and
     tests.  Returns a dictionary indexed by test 'filename' containing lists of
     EstimatorStats."""
     N, k = 1000, 5
@@ -42,20 +44,21 @@ def generate_estimator_comparison():
 
 
 def generate_convergence_plots():
-    """ Generates plots of the convergence of the estimator with `N` """
+    """Generates plots of the convergence of the estimator with `N`"""
     convergence_plots = {}
     for test in Tests:
-        convergence_plots[test.filename] = convergence_plot(naive_estimator, test)
+        convergence_plots[test.filename] = convergence_plot(scipy_estimator, test)
     return convergence_plots
 
 
 def main():
     data = {
-        'Estimators': Estimators,
-        'Tests': Tests,
-        'Comparisons': generate_estimator_comparison(),
-        'ConvergencePlots': generate_convergence_plots()}
-    with open("report.md", 'w') as f:
+        "Estimators": Estimators,
+        "Tests": Tests,
+        "Comparisons": generate_estimator_comparison(),
+        "ConvergencePlots": generate_convergence_plots(),
+    }
+    with open("report.md", "w") as f:
         f.write(render_template("report.md", data))
 
 

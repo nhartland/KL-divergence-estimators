@@ -30,15 +30,19 @@ details. Please take with a pinch of salt.
 
  - **naive_estimator**
 
-    KL-Divergence estimator using brute-force (numpy) k-NN
+   KL-Divergence estimator using brute-force (numpy) k-NN
 
  - **scipy_estimator**
 
-    KL-Divergence estimator using scipy's KDTree
+   KL-Divergence estimator using scipy's KDTree
 
  - **skl_estimator**
 
-    KL-Divergence estimator using scikit-learn's NearestNeighbours
+   KL-Divergence estimator using scikit-learn's NearestNeighbours
+
+ - **skl_efficient**
+
+   An efficient version of the scikit-learn estimator by @LoryPack
 
 
 These estimators have been benchmarked against [slaypni/universal-divergence](https://github.com/slaypni/universal-divergence).
@@ -48,7 +52,7 @@ These estimators have been benchmarked against [slaypni/universal-divergence](ht
 
 
 ## Self-divergence of samples from a 1-dimensional Gaussian
- Estimate the divergence between two samples of size **N** and dimension
+Estimate the divergence between two samples of size **N** and dimension
     1, drawn from the same ~ N(0,1) probability distribution.
 The expected value for the divergence in this test is **D=0**.
 
@@ -56,9 +60,10 @@ The expected value for the divergence in this test is **D=0**.
 
 |    Estimator    |  D(P\|Q) | Time (s)|
 |-----------------|----------|---------|
-|naive_estimator  | 1.595e-03|13.002|
-|scipy_estimator  | 1.595e-03|25.896|
-|skl_estimator    | 1.595e-03|36.832|
+|naive_estimator  | 1.595e-03|7.998|
+|scipy_estimator  | 1.595e-03|0.111|
+|skl_estimator    | 1.595e-03|18.427|
+|skl_efficient    | 1.595e-03|0.147|
 
 #### Convergence of estimator with *N*
 ![Convergence Plot](figures/self_divergence_1d_convergence.png)
@@ -66,7 +71,7 @@ The expected value for the divergence in this test is **D=0**.
 
 
 ## Self-divergence of samples from a 2-dimensional Gaussian
- Estimate the divergence between two samples of size **N** drawn
+Estimate the divergence between two samples of size **N** drawn
     from the same 2D distribution with
     `mean=[0,0]` and `covariance=[[1, 0.1], [0.1, 1]]`.
 The expected value for the divergence in this test is **D=0**.
@@ -75,9 +80,10 @@ The expected value for the divergence in this test is **D=0**.
 
 |    Estimator    |  D(P\|Q) | Time (s)|
 |-----------------|----------|---------|
-|naive_estimator  |-6.811e-04|17.438|
-|scipy_estimator  |-6.811e-04|47.015|
-|skl_estimator    |-6.811e-04|37.707|
+|naive_estimator  |-6.811e-04|9.931|
+|scipy_estimator  |-6.811e-04|0.182|
+|skl_estimator    |-6.811e-04|18.362|
+|skl_efficient    |-6.811e-04|0.222|
 
 #### Convergence of estimator with *N*
 ![Convergence Plot](figures/self_divergence_2d_convergence.png)
@@ -85,7 +91,7 @@ The expected value for the divergence in this test is **D=0**.
 
 
 ## Divergence of two 1-dimensional Gaussians
- Estimate the divergence between two samples of size `N` and dimension
+Estimate the divergence between two samples of size `N` and dimension
     1. The first drawn from N(0,1), the second from N(2,1).
 The expected value for the divergence in this test is **D=2.0**.
 
@@ -93,27 +99,28 @@ The expected value for the divergence in this test is **D=2.0**.
 
 |    Estimator    |  D(P\|Q) | Time (s)|
 |-----------------|----------|---------|
-|naive_estimator  | 1.790e+00|14.344|
-|scipy_estimator  | 1.790e+00|24.998|
-|skl_estimator    | 1.790e+00|35.024|
+|naive_estimator  | 1.790e+00|7.014|
+|scipy_estimator  | 1.790e+00|0.105|
+|skl_estimator    | 1.790e+00|18.215|
+|skl_efficient    | 1.790e+00|0.139|
 
 #### Convergence of estimator with *N*
 ![Convergence Plot](figures/gaussian_divergence_1d_convergence.png)
 
 # Generating this document
 
+Start in a clean python 3.10 environment and run the following
+
 ```Shell
+ # Setup dependencies
+ pip install -r requirements.txt
+ # Run the tests and generate the figures
  ./src/run_tests.py
+ # Add the header and footer to the report
  cat templates/header.md report.md templates/footer.md > README.md
 ```
 
 Which will then likely take some time to complete.
-
-#### Requirements
-
-- Python >= 3.6
-- scipy, scikit-learn
-- matplotlib, jinja2
 
 #### Important settings
 
