@@ -111,7 +111,7 @@ def skl_estimator(s1, s2, k=1):
 
 
 def skl_efficient(s1, s2, k=1):
-    """KL-Divergence estimator using scikit-learn's NearestNeighbours
+    """An efficient version of the scikit-learn estimator by @LoryPack
     s1: (N_1,D) Sample drawn from distribution P
     s2: (N_2,D) Sample drawn from distribution Q
     k: Number of neighbours considered (default 1)

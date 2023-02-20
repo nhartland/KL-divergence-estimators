@@ -42,7 +42,7 @@ details. Please take with a pinch of salt.
 
  - **skl_efficient**
 
-   KL-Divergence estimator using scikit-learn's NearestNeighbours
+   An efficient version of the scikit-learn estimator by @LoryPack
 
 
 These estimators have been benchmarked against [slaypni/universal-divergence](https://github.com/slaypni/universal-divergence).
@@ -60,10 +60,10 @@ The expected value for the divergence in this test is **D=0**.
 
 |    Estimator    |  D(P\|Q) | Time (s)|
 |-----------------|----------|---------|
-|naive_estimator  | 1.595e-03|8.031|
+|naive_estimator  | 1.595e-03|7.998|
 |scipy_estimator  | 1.595e-03|0.111|
-|skl_estimator    | 1.595e-03|18.334|
-|skl_efficient    | 1.595e-03|0.146|
+|skl_estimator    | 1.595e-03|18.427|
+|skl_efficient    | 1.595e-03|0.147|
 
 #### Convergence of estimator with *N*
 ![Convergence Plot](figures/self_divergence_1d_convergence.png)
@@ -80,10 +80,10 @@ The expected value for the divergence in this test is **D=0**.
 
 |    Estimator    |  D(P\|Q) | Time (s)|
 |-----------------|----------|---------|
-|naive_estimator  |-6.811e-04|9.908|
+|naive_estimator  |-6.811e-04|9.931|
 |scipy_estimator  |-6.811e-04|0.182|
-|skl_estimator    |-6.811e-04|18.440|
-|skl_efficient    |-6.811e-04|0.221|
+|skl_estimator    |-6.811e-04|18.362|
+|skl_efficient    |-6.811e-04|0.222|
 
 #### Convergence of estimator with *N*
 ![Convergence Plot](figures/self_divergence_2d_convergence.png)
@@ -99,10 +99,10 @@ The expected value for the divergence in this test is **D=2.0**.
 
 |    Estimator    |  D(P\|Q) | Time (s)|
 |-----------------|----------|---------|
-|naive_estimator  | 1.790e+00|7.032|
-|scipy_estimator  | 1.790e+00|0.106|
-|skl_estimator    | 1.790e+00|18.685|
-|skl_efficient    | 1.790e+00|0.142|
+|naive_estimator  | 1.790e+00|7.014|
+|scipy_estimator  | 1.790e+00|0.105|
+|skl_estimator    | 1.790e+00|18.215|
+|skl_efficient    | 1.790e+00|0.139|
 
 #### Convergence of estimator with *N*
 ![Convergence Plot](figures/gaussian_divergence_1d_convergence.png)

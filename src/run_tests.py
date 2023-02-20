@@ -13,7 +13,7 @@ from jinja2 import Environment, FileSystemLoader
 
 from tests import Tests
 from plots import convergence_plot
-from knn_divergence import Estimators, naive_estimator
+from knn_divergence import Estimators, scipy_estimator
 
 logging.basicConfig(stream=sys.stdout, level=logging.INFO)
 
@@ -47,7 +47,7 @@ def generate_convergence_plots():
     """Generates plots of the convergence of the estimator with `N`"""
     convergence_plots = {}
     for test in Tests:
-        convergence_plots[test.filename] = convergence_plot(naive_estimator, test)
+        convergence_plots[test.filename] = convergence_plot(scipy_estimator, test)
     return convergence_plots
 
 
