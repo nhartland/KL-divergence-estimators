@@ -82,6 +82,11 @@ for estimator in [naive_estimator, scipy_estimator, skl_estimator, skl_efficient
 
 These estimators have been benchmarked against [slaypni/universal-divergence](https://github.com/slaypni/universal-divergence).
 
+# Issues
+When the sample sizes of P and Q are very different, the KL-divergence is systematically overestimated. This is shown in the following graph, where the divergence between two 1D Gaussians is estimated for different sample sizes.
+
+![Convergence Plot](figures/self_divergence_1d_sample_sizes.png)
+
 # Tests
 
 
