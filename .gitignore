@@ -1,3 +1,4 @@
 report.md
 *.pyc
 __pycache__
+*.egg-info
