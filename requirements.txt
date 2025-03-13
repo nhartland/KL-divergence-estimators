@@ -28,7 +28,7 @@ numpy==1.24.2
     #   scipy
 packaging==23.0
     # via matplotlib
-pillow==9.4.0
+pillow==10.3.0
     # via matplotlib
 pyparsing==3.0.9
     # via matplotlib
