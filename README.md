@@ -25,6 +25,41 @@ with **k**=5.
 This study is far from exhaustive, and timings are sensitive to implementation
 details. Please take with a pinch of salt.
 
+# Installation and usage
+
+Install the package via pip
+
+```Shell
+pip install -e .
+```
+
+The package can then be used as follows
+
+```Python
+from kl_divergence_estimators import (
+    naive_estimator,
+    scipy_estimator,
+    skl_estimator,
+    skl_efficient,
+    gaussian_divergence,
+)
+import numpy as np
+from time import time
+
+N = 5000
+mu1, mu2, sigma1, sigma2 = 0, 3, 1, 2
+P = np.random.normal(mu1, sigma1, (N, 1))
+Q = np.random.normal(mu2, sigma2, (N, 1))
+
+print(f"Exact divergence {gaussian_divergence(mu1, mu2, sigma1, sigma2)}")
+
+for estimator in [naive_estimator, scipy_estimator, skl_estimator, skl_efficient]:
+    t0 = time()
+    e = estimator(P, Q, k=2)
+    print(f"{estimator.__name__} estimated D(P||Q) = {e:.3f} in {time()-t0:.3f}s")
+```
+
+
 # Estimator implementations
 
 
@@ -46,6 +81,11 @@ details. Please take with a pinch of salt.
 
 
 These estimators have been benchmarked against [slaypni/universal-divergence](https://github.com/slaypni/universal-divergence).
+
+# Issues
+When the sample sizes of P and Q are very different, the KL-divergence is systematically overestimated. This is shown in the following graph, where the divergence between two 1D Gaussians is estimated for different sample sizes.
+
+![Convergence Plot](figures/self_divergence_1d_sample_sizes.png)
 
 # Tests
 
