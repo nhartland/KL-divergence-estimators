@@ -60,11 +60,14 @@ def naive_estimator(s1, s2, k=1):
     return D
 
 
-def scipy_estimator(s1, s2, k=1):
+def scipy_estimator(s1, s2, k=1, kd_tree_s1:KDTree=None, kd_tree_s2:KDTree=None, eps=1e-6):
     """KL-Divergence estimator using scipy's KDTree
     s1: (N_1,D) Sample drawn from distribution P
     s2: (N_2,D) Sample drawn from distribution Q
     k: Number of neighbours considered (default 1)
+    kd_tree_s1: Precomputed KDTree for s1 to speed up repetetive calculations with the same data
+    kd_tree_s2: Precomputed KDTree for s2 to speed up repetetive calculations with the same data
+    eps: Small value to avoid division by zero
     return: estimated D(P|Q)
     """
     verify_sample_shapes(s1, s2, k)
@@ -73,8 +76,15 @@ def scipy_estimator(s1, s2, k=1):
     d = float(s1.shape[1])
     D = np.log(m / (n - 1))
 
-    nu_d, nu_i = KDTree(s2).query(s1, k)
-    rho_d, rhio_i = KDTree(s1).query(s1, k + 1)
+    kd_tree_s1 = kd_tree_s1 or KDTree(s1)
+    kd_tree_s2 = kd_tree_s2 or KDTree(s2)
+
+    nu_d, nu_i = kd_tree_s2.query(s1, k)
+    rho_d, rhio_i = kd_tree_s1.query(s1, k + 1)
+
+    # Avoid division by zero
+    nu_d += eps
+    rho_d += eps
 
     # KTree.query returns different shape in k==1 vs k > 1
     if k > 1:
@@ -85,7 +95,7 @@ def scipy_estimator(s1, s2, k=1):
     return D
 
 
-def skl_estimator(s1, s2, k=1):
+def skl_estimator(s1, s2, k=1, ):
     """KL-Divergence estimator using scikit-learn's NearestNeighbours
     s1: (N_1,D) Sample drawn from distribution P
     s2: (N_2,D) Sample drawn from distribution Q
@@ -106,11 +116,15 @@ def skl_estimator(s1, s2, k=1):
         s2_distances, indices = s2_neighbourhood.kneighbors([p1], k)
         rho = s1_distances[0][-1]
         nu = s2_distances[0][-1]
+
+        nu += 1e-10
+        rho += 1e-10
+        
         D += (d / n) * np.log(nu / rho)
     return D
 
 
-def skl_efficient(s1, s2, k=1):
+def skl_efficient(s1, s2, k=1, eps=1e-10):
     """An efficient version of the scikit-learn estimator by @LoryPack
     s1: (N_1,D) Sample drawn from distribution P
     s2: (N_2,D) Sample drawn from distribution Q
@@ -131,6 +145,10 @@ def skl_efficient(s1, s2, k=1):
     s2_distances, indices = s2_neighbourhood.kneighbors(s1, k)
     rho = s1_distances[:, -1]
     nu = s2_distances[:, -1]
+
+    nu += eps
+    rho += eps
+
     if np.any(rho == 0):
         warnings.warn(
             f"The distance between an element of the first dataset and its {k}-th NN in the same dataset "
